@@ -1,0 +1,27 @@
+{
+    "development": {
+        "username": "postgres",
+        "password": "postgres",
+        "database": "test_db",
+        "dialect": "postgres",
+        "host": "localhost",
+        "logging": false
+    },
+    "production": {
+        "username": "aror_api",
+        "database": "aror_db",
+        "password": null,
+        "dialect": "postgres",
+        "host": "167.71.134.226",
+        "port": 26257,
+        "logging": false
+    },
+    "test":{
+        "username": "postgres",
+        "password": "postgres",
+        "database": "test_db",
+        "dialect": "postgres",
+        "host": "localhost",
+        "logging": false
+    }
+}
