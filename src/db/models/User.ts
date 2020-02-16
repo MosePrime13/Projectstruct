@@ -1,8 +1,4 @@
-
 export interface UserAttributes {
-    firstName ? : string;
-    lastName ? : string;
-    email ? : string;
 
 }
 
@@ -11,21 +7,23 @@ export interface UserInstance {
     createdAt: Date;
     updatedAt: Date;
 
-    firstName: string;
-    lastName: string;
-    email: string;
-
 }
 
 export const UserFactory = (sequelize, DataTypes) => {
     var User = sequelize.define('User', {
-        firstName: DataTypes.STRING,
-        lastName: DataTypes.STRING,
-        email: DataTypes.STRING
+        id: { type: DataTypes.UUID, defaultValue: DataTypes.UUIDV1, primaryKey: true },
+        name: { type: DataTypes.STRING },
+        email: { type: DataTypes.STRING },
+        createdAt: {type: DataTypes.DATE, field: 'created_at'},
+        updatedAt: {type: DataTypes.DATE, field: 'updated_at'},
+        deletedAt: {type: DataTypes.DATE, field: 'deleted_at'},
+    },{
+        timestamps: true,
+        paranoid: true
     });
 
     User.associate = function(models) {
-        // associations can be defined here
+        User.hasMany(models.Post, { foreignKey: 'user_id'})
     };
 
     return User;

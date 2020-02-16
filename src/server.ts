@@ -6,6 +6,7 @@ import { Server, IncomingMessage, ServerResponse } from "http";
 dotenv.config({ path: __dirname + '/../.env' });
 
 import dbConnector from './plugins/dbConnector';
+import routes from './routes';
 
 const app: fastify.FastifyInstance<
     Server,
@@ -19,6 +20,7 @@ const app: fastify.FastifyInstance<
 app.register(helmet);
 app.register(dbConnector);
 
+routes(app);
 
 app.listen(Number(process.env.PORT), '0.0.0.0', function(err, address){
     if(err){

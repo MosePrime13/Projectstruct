@@ -21,7 +21,7 @@
         "password": "postgres",
         "database": "test_db",
         "dialect": "postgres",
-        "host": "localhost",
+        "host": "",
         "logging": false
     }
 }

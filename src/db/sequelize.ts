@@ -1,4 +1,5 @@
-import { UserFactory } from './models/User';
+import { PostFactory } from './models/Post';
+import { UserFactory } from './models/user';
 import {Sequelize} from 'sequelize-cockroachdb';
 import dotenv from 'dotenv';
 import path from 'path';
@@ -33,7 +34,8 @@ if(process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
 export const db = {
     sequelize,
     Sequelize,
-    User: UserFactory(sequelize, Sequelize) 
+    User: UserFactory(sequelize, Sequelize),
+    Post: PostFactory(sequelize, Sequelize)
 }
 
 Object.keys(db).forEach(modelName => {

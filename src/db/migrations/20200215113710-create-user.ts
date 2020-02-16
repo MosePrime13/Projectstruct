@@ -7,37 +7,38 @@ export = {
     up: (queryInterface: QueryInterface, Sequelize: SequelizeStatic) => {
         return queryInterface.createTable('Users', {
             id: {
-                allowNull: false,
-                autoIncrement: true,
-                primaryKey: true,
-                type: Sequelize.INTEGER
+                type: Sequelize.UUID,
+                defaultValue: Sequelize.UUIDV1, 
+                primaryKey: true
             },
 
-            firstName: {
-                type: Sequelize.STRING
-            },
-
-            lastName: {
-                type: Sequelize.STRING
+            name: { 
+                type: Sequelize.STRING 
             },
 
             email: {
-                type: Sequelize.STRING
-            },
-
-            phone: {
-                type: Sequelize.STRING
+                 type: Sequelize.STRING
             },
 
             createdAt: {
                 allowNull: false,
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                field: 'created_at'
             },
 
             updatedAt: {
                 allowNull: false,
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                field: 'updated_at'
+            },
+
+            deletedAt: {
+                type: Sequelize.DATE,
+                field: 'deleted_at'
             }
+        },{
+            timestamps: true,
+            paranoid: true
         });
     },
 

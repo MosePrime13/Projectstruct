@@ -1,6 +1,4 @@
 export interface PostAttributes {
-    title ? : string;
-    description ? : string;
 
 }
 
@@ -8,21 +6,23 @@ export interface PostInstance {
     id: number;
     createdAt: Date;
     updatedAt: Date;
-
-    title: string;
-    description: string;
-
 }
 
 export const PostFactory = (sequelize, DataTypes) => {
     var Post = sequelize.define('Post', {
-        title: DataTypes.STRING,
-        description: DataTypes.STRING,
-        pasta: DataTypes.STRING,
+        id: { type: DataTypes.UUID, defaultValue: DataTypes.UUIDV1, primaryKey: true },
+        title: { type: DataTypes.STRING },
+        description: { type: DataTypes.TEXT },
+        createdAt: {type: DataTypes.DATE, field: 'created_at'},
+        updatedAt: {type: DataTypes.DATE, field: 'updated_at'},
+        deletedAt: {type: DataTypes.DATE, field: 'deleted_at'},
+    },{
+        timestamps: true,
+        paranoid: true
     });
 
     Post.associate = function(models) {
-        // associations can be defined here
+        Post.belongsTo(models.User, { foreignKey: 'user_id'});
     };
 
     return Post;
